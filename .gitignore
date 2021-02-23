@@ -1,0 +1,23 @@
+*.log
+*.out
+*.zip
+tmp
+.tmp
+assets
+context
+test-results
+
+# Dependency directory
+node_modules
+
+# OS metadata
+.DS_Store
+
+# Ignore built ts files
+dist
+*.tsbuildinfo
+test-report.html
+all_result.csv
+*.generated.metadata.json
+*.generated.metadata.avro.json
+*.generated.ts

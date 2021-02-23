@@ -1,0 +1,7 @@
+**/dist/
+**/assets/
+**/node_modules/
+jest.config.js
+.eslintrc.js
+tmp/
+*.js

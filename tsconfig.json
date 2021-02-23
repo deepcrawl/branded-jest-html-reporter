@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "lib": ["esnext"],
+    "rootDir": "src",
+    "outDir": "dist",
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "alwaysStrict": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    "baseUrl": "./src"
+  },
+  "exclude": ["src/**/*.test.ts", "./dist/**/*"]
+}
