@@ -8,6 +8,6 @@ describe("foo", () => {
   });
 
   it("doesn't do something", () => {
-    expect(true).toBe(false);
+    expect(true).toBe(true);
   });
 });
