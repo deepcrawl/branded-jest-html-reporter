@@ -1,5 +1,5 @@
 {
-  "name": "branded-jest-html-reporter",
+  "name": "@deepcrawl/branded-jest-html-reporter",
   "version": "1.0.0",
   "description": "A DeepCrawl Branded Jest Html Reporter",
   "main": "dist/index.js",
@@ -12,7 +12,8 @@
   },
   "scripts": {
     "test": "jest --verbose",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublish": "yarn build"
   },
   "homepage": "https://github.com/deepcrawl/branded-jest-html-reporter#readme",
   "repository": {
