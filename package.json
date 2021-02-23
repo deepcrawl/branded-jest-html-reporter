@@ -4,7 +4,6 @@
   "description": "A DeepCrawl Branded Jest Html Reporter",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/deepcrawl/branded-jest-html-reporter.git",
   "author": "Ali Habibzadeh <ali.hci@icloud.com>",
   "license": "MIT",
   "private": true,
@@ -14,6 +13,14 @@
   "scripts": {
     "test": "jest --verbose",
     "build": "tsc"
+  },
+  "homepage": "https://github.com/deepcrawl/branded-jest-html-reporter#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deepcrawl/branded-jest-html-reporter.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
