@@ -13,6 +13,5 @@
     "declaration": true,
     "declarationMap": true,
     "baseUrl": "./src"
-  },
-  "exclude": ["src/**/*.test.ts", "./dist/**/*"]
+  }
 }

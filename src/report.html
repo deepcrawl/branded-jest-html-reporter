@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" sizes="16x16 32x32" href="https://www.deepcrawl.com/wp-content/uploads/2015/03/DC-1.png" />
+    <title></title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <meta name="title" content="" />
+    <meta
+      name="description"
+      content="A Simple API containing a curated set of metrics about the health of a webpage from the technical SEO point of view. It should act as a starting point for an engineer who likes to play and learn more about extracting insights from web pages for the purposes of SEO or testing."
+    />
+
+    <style>
+      .jumbotron {
+        background-color: #24333e;
+        color: white;
+        border-radius: 0%;
+      }
+
+      .jumbotron h1 {
+        font-weight: 100;
+      }
+
+      .jumbotron .brace {
+        position: fixed;
+        font-size: 52rem;
+        top: -32rem;
+        transform: rotate(20deg);
+        opacity: 0.05;
+        left: 5rem;
+        pointer-events: none;
+      }
+
+      body {
+        background: #f4f4f4;
+        font-size: 1.1rem;
+      }
+
+      .btn-primary {
+        background: #7eac4a;
+        border-color: #7eac4a;
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus,
+      .btn-primary.focus,
+      .btn-primary.active,
+      .btn-primary:active,
+      .open > .dropdown-toggle.btn-primary {
+        background: #679f2d !important;
+        border-color: #679f2d !important;
+        box-shadow: none;
+      }
+
+      #logo {
+        display: block;
+        width: auto;
+        height: 35px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="jumbotron">
+      <span class="brace">{}</span>
+      <div class="container">
+        <img id="logo" src="https://app.deepcrawl.com/images/logo.svg" alt="DeepCrawl" />
+        <% if (projectName) { %>
+        <h1><%= projectName %></h1>
+        <% } %>
+        <!-- sd -->
+        <% if (projectDescription) { %>
+        <p class="lead"><%= projectDescription %></p>
+        <% } %>
+        <!-- sd -->
+        <% if (repositoryUrl) { %>
+        <a href="<%= repositoryUrl %>" class="btn btn-primary btn-lg">Github Repository</a>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="container">
+      <ul>
+        <% suites.forEach(function(suite) { %>
+        <li>
+          <strong><%= suite.testFilePath %></strong>
+          skipped: <%= suite.skipped %>
+
+          <ul>
+            <% Object.entries(suite.testResults).forEach(function([describe, tests]) { %>
+            <li>
+              <strong><%= describe %></strong>
+
+              <ul>
+                <% tests.forEach(function(test) { %>
+                <li>
+                  <strong><%= test.title %></strong>
+                  status: <%= test.status %>
+                </li>
+                <% }); %>
+              </ul>
+            </li>
+            <% }); %>
+          </ul>
+        </li>
+        <% }); %>
+      </ul>
+    </div>
+  </body>
+</html>
