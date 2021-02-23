@@ -4,7 +4,7 @@
 npm install @deepcrawl/branded-jest-html-reporter
 ```
 
-then in jest.config.js:
+then in `jest.config.js`:
 
 ```javascript
 reporters: [
