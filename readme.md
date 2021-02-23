@@ -8,7 +8,7 @@ npm install @deepcrawl/branded-jest-html-reporter
 reporters: [
     "default",
     [
-      "<rootDir>/dist/index.js",
+      "@deepcrawl/branded-jest-html-reporter",
       {
         projectName: "@deepcrawl/branded-jest-html-reporter",
         projectDescription: "A DeepCrawl branded Jest Html Reporter",
