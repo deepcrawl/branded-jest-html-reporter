@@ -11,3 +11,17 @@ describe("foo", () => {
     expect(true).toBe(true);
   });
 });
+
+describe("foo 2", () => {
+  it("does something 2", () => {
+    expect(true).toBe(true);
+  });
+
+  it("does something else 2", () => {
+    expect(false).toBe(false);
+  });
+
+  it("doesn't do something 2", () => {
+    expect(true).toBe(true);
+  });
+});

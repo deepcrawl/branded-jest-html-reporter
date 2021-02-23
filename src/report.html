@@ -99,11 +99,12 @@
           <ul>
             <% Object.entries(suite.testResults).forEach(function([describe, tests]) { %>
             <li>
-              <strong><%= describe %></strong>
+              <strong>describe: <%= describe %></strong>
 
               <ul>
                 <% tests.forEach(function(test) { %>
                 <li>
+                  it
                   <strong><%= test.title %></strong>
                   status: <%= test.status %>
                 </li>
