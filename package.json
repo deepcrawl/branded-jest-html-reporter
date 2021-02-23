@@ -1,5 +1,5 @@
 {
-  "name": "@deepcrawl/branded-jest-html-reporter",
+  "name": "branded-jest-html-reporter",
   "version": "1.0.0",
   "description": "A DeepCrawl Branded Jest Html Reporter",
   "main": "dist/index.js",
