@@ -4,7 +4,6 @@ import { join } from "path";
 import { Reporter, Context, Config } from "@jest/reporters";
 import { AggregatedResult } from "@jest/test-result";
 import { renderFile } from "ejs";
-import { groupBy } from "ramda";
 
 interface IBrandedHtmlReporterOptions {
   outputDir?: string;
@@ -14,15 +13,15 @@ interface IBrandedHtmlReporterOptions {
   projectDescription?: string;
 }
 
+interface ITemplateData extends IBrandedHtmlReporterOptions {
+  results: AggregatedResult;
+}
+
 export default class BrandedHtmlReporter implements Pick<Reporter, "onRunComplete"> {
-  constructor(private globalConfig: Config.GlobalConfig, private options: IBrandedHtmlReporterOptions) {}
+  constructor(private _: Config.GlobalConfig, private options: IBrandedHtmlReporterOptions) {}
 
   public async onRunComplete(_: Set<Context>, results: AggregatedResult): Promise<void> {
-    const suites = results.testResults.map(res => ({
-      ...res,
-      testResults: groupBy(item => item.ancestorTitles[0], res.testResults),
-    }));
-    const template = await this.getRenderedTemplate({ ...this.options, suites });
+    const template = await this.getRenderedTemplate({ ...this.options, results });
     await this.writeReport(template);
   }
 
@@ -30,8 +29,8 @@ export default class BrandedHtmlReporter implements Pick<Reporter, "onRunComplet
     return fs.writeFile(this.getWritingPath(), renderedTemplate);
   }
 
-  private getRenderedTemplate(templateData: Record<string, unknown>): Promise<string> {
-    return renderFile(join(__dirname, "report.html"), templateData);
+  private getRenderedTemplate(templateData: ITemplateData): Promise<string> {
+    return renderFile(join(__dirname, "report.html"), { templateData });
   }
 
   private getWritingPath(): string {

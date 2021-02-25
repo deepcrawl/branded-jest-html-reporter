@@ -12,6 +12,13 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <script src="https://kit.fontawesome.com/10b9604242.js" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
+      integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+      crossorigin="anonymous"
+    />
 
     <meta name="title" content="" />
     <meta
@@ -24,6 +31,7 @@
         background-color: #24333e;
         color: white;
         border-radius: 0%;
+        padding-bottom: 0;
       }
 
       .jumbotron h1 {
@@ -61,11 +69,37 @@
         box-shadow: none;
       }
 
-      #logo {
-        display: block;
-        width: auto;
-        height: 35px;
-        margin-bottom: 20px;
+      .table-dark {
+        color: #fff;
+        background-color: #24343e;
+      }
+
+      .danger-text {
+        color: #ca776c;
+      }
+      .success-text {
+        color: #7eac4a;
+      }
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      ul ul {
+        margin-left: 10px;
+      }
+      .list-group-item {
+        border-color: transparent;
+        margin-bottom: 1px;
+      }
+      a,
+      a:hover {
+        color: #4796bb;
+      }
+      .truncate {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     </style>
   </head>
@@ -74,48 +108,126 @@
     <div class="jumbotron">
       <span class="brace">{}</span>
       <div class="container">
-        <img id="logo" src="https://app.deepcrawl.com/images/logo.svg" alt="DeepCrawl" />
-        <% if (projectName) { %>
-        <h1><%= projectName %></h1>
-        <% } %>
-        <!-- sd -->
-        <% if (projectDescription) { %>
-        <p class="lead"><%= projectDescription %></p>
-        <% } %>
-        <!-- sd -->
-        <% if (repositoryUrl) { %>
-        <a href="<%= repositoryUrl %>" class="btn btn-primary btn-lg">Github Repository</a>
-        <% } %>
+        <h1>
+          <a data-bind="attr: { href: repositoryUrl }"><i class="fa fa-github-alt" aria-hidden="true"></i> </a>
+          <span data-bind="text: projectName"></span>
+        </h1>
+        <p class="lead" data-bind="text: projectDescription"></p>
+
+        <table class="table table-dark">
+          <tr>
+            <td>Total Tests</td>
+            <td>
+              <i class="fa fa-exclamation-circle" data-bind="css: { 'danger-text': results.numFailedTests > 0 }"></i>
+              Failed Tests
+            </td>
+            <td>
+              <i class="fa fa-check-circle-o success-text"></i>
+              Passed Tests
+            </td>
+          </tr>
+          <tr>
+            <td data-bind="text: results.numTotalTests"></td>
+            <td data-bind="text: results.numFailedTests, css: { 'danger-text': results.numFailedTests > 0 }"></td>
+            <td data-bind="text: results.numPassedTests" class="success-text"></td>
+          </tr>
+        </table>
       </div>
     </div>
 
     <div class="container">
-      <ul>
-        <% suites.forEach(function(suite) { %>
-        <li>
-          <strong><%= suite.testFilePath %></strong>
-          skipped: <%= suite.skipped %>
+      <div class="row justify-content-start">
+        <div class="col-3">
+          <ul data-bind="foreach: files">
+            <li class="truncate">
+              <a data-bind="text: testFilePath, attr: { href: `#file-${$index()}` }"></a>
 
-          <ul>
-            <% Object.entries(suite.testResults).forEach(function([describe, tests]) { %>
-            <li>
-              <strong>describe: <%= describe %></strong>
-
-              <ul>
-                <% tests.forEach(function(test) { %>
-                <li>
-                  it
-                  <strong><%= test.title %></strong>
-                  status: <%= test.status %>
+              <ul data-bind="foreach: suites">
+                <li class="truncate">
+                  <a data-bind="text: name, attr: { href: `#suite-${$index()}-${$parentContext.$index()}`}"></a>
                 </li>
-                <% }); %>
               </ul>
             </li>
-            <% }); %>
           </ul>
-        </li>
-        <% }); %>
-      </ul>
+        </div>
+        <div class="col-9">
+          <div data-bind="foreach: files">
+            <h4 class="mb-1" data-bind="text: testFilePath, attr: { id: `file-${$index()}` }"></h4>
+
+            <div data-bind="foreach: suites">
+              <div>
+                <div>
+                  <p
+                    class="mb-1"
+                    style="white-space: pre-wrap"
+                    data-bind="text: name, attr: { id: `suite-${$index()}-${$parentContext.$index()}`}"
+                  ></p>
+                  <div class="list-group" data-bind="foreach: tests" style="margin-bottom: 30px">
+                    <div
+                      class="list-group-item"
+                      data-bind="attr: { id: `test-${$index()}-${$parentContext.$index()}-${$parentContext.$parentContext.$index()}` }"
+                    >
+                      <div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1">
+                          <i class="fa fa-flask" aria-hidden="true"></i>
+                          <span data-bind="text: title"></span>
+                        </p>
+                        <small data-bind="text: status, css: { 'danger-text': status === 'failed' }"></small>
+                      </div>
+                      <code data-bind="foreach: failureDetails" class="danger-text">
+                        Expected <span data-bind="text:error.matcherResult.expected"></span> but value was
+                        <span data-bind="text:error.matcherResult.actual"></span>
+                        (<span data-bind="text:error.matcherResult.name"></span>)
+                      </code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <script>
+      const templateData = <%-JSON.stringify(templateData)%>;
+    </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
+      integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.27.1/ramda.min.js"
+      integrity="sha512-rZHvUXcc1zWKsxm7rJ8lVQuIr1oOmm7cShlvpV0gWf0RvbcJN6x96al/Rp2L2BI4a4ZkT2/YfVe/8YvB2UHzQw=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      class ViewModel {
+        constructor(data) {
+          this.projectName = data.projectName;
+          this.projectDescription = data.projectDescription;
+          this.repositoryUrl = data.repositoryUrl;
+          this.results = data.results;
+          this.files = this.#getFiles();
+          console.log(this.files);
+        }
+
+        #getFiles() {
+          return this.results.testResults.map(s => {
+            const paths = s.testFilePath.split("/");
+            return {
+              ...s,
+              testFilePath: paths[paths.length - 1],
+              suites: Object.entries(R.groupBy(i => i.ancestorTitles[0], s.testResults)).map(([name, tests]) => ({
+                name,
+                tests,
+              })),
+            };
+          });
+        }
+      }
+
+      ko.applyBindings(new ViewModel(templateData));
+    </script>
   </body>
 </html>

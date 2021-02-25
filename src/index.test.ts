@@ -1,10 +1,11 @@
-describe("foo", () => {
+describe(`The describe title
+Some extended description about this test so make sure you underatand it properly`, () => {
   it("does something", () => {
     expect(true).toBe(true);
   });
 
   it("does something else", () => {
-    expect(false).toBe(false);
+    expect(false).toBe(true);
   });
 
   it("doesn't do something", () => {
