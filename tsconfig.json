@@ -6,6 +6,7 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "alwaysStrict": true,
+    "skipLibCheck": true,
     "moduleResolution": "node",
     "strict": true,
     "sourceMap": true,

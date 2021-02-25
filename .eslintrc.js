@@ -12,19 +12,13 @@ module.exports = {
   },
   overrides: [
     {
-      files: [
-        "**/*.test.ts",
-        "**/*.testing.ts",
-        "**/*.mock.ts",
-        "**/*.test-util.ts",
-        "**/*.test-hook.ts",
-      ],
+      files: ["**/*.test.ts", "**/*.testing.ts", "**/*.mock.ts", "**/*.test-util.ts", "**/*.test-hook.ts"],
       rules: {
         "node/no-unpublished-import": "off",
         "max-lines-per-function": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
-        "no-console": "warn",
+        "no-console": "off",
         "no-loops/no-loops": "warn",
       },
     },
@@ -44,6 +38,7 @@ module.exports = {
       files: ["**/*.ts"],
       rules: {
         "@typescript-eslint/require-await": "off",
+        "no-console": "off",
       },
     },
   ],

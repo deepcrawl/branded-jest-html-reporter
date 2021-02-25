@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="htmlTag">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="icon" sizes="16x16 32x32" href="https://www.deepcrawl.com/wp-content/uploads/2015/03/DC-1.png" />
-    <title></title>
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <script src="https://kit.fontawesome.com/10b9604242.js" crossorigin="anonymous"></script>
+    <title data-bind="text: projectName"></title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
-      integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
 
-    <meta name="title" content="" />
-    <meta
-      name="description"
-      content="A Simple API containing a curated set of metrics about the health of a webpage from the technical SEO point of view. It should act as a starting point for an engineer who likes to play and learn more about extracting insights from web pages for the purposes of SEO or testing."
-    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://kit.fontawesome.com/10b9604242.js" crossorigin="anonymous"></script>
 
     <style>
       .container {
@@ -135,7 +135,9 @@
               <ul data-bind="foreach: suites">
                 <li class="truncate">
                   <a
-                    data-bind="text: name, attr: { href: `#suite-${$index()}-${$parentContext.$index()}`, title: name}"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    data-bind="text: name, attr: { href: `#suite-${$index()}-${$parentContext.$index()}`, title: name }"
                   ></a>
                 </li>
               </ul>
@@ -221,143 +223,7 @@
     </div>
 
     <script>
-      const templateData = {
-        projectName: "@deepcrawl/branded-jest-html-reporter",
-        projectDescription: "A DeepCrawl branded Jest Html Reporter",
-        repositoryUrl: "https://github.com/deepcrawl/branded-jest-html-reporter",
-        results: {
-          numFailedTestSuites: 0,
-          numFailedTests: 0,
-          numPassedTestSuites: 1,
-          numPassedTests: 6,
-          numPendingTestSuites: 0,
-          numPendingTests: 0,
-          numRuntimeErrorTestSuites: 0,
-          numTodoTests: 0,
-          numTotalTestSuites: 1,
-          numTotalTests: 6,
-          openHandles: [],
-          snapshot: {
-            added: 0,
-            didUpdate: false,
-            failure: false,
-            filesAdded: 0,
-            filesRemoved: 0,
-            filesRemovedList: [],
-            filesUnmatched: 0,
-            filesUpdated: 0,
-            matched: 0,
-            total: 0,
-            unchecked: 0,
-            uncheckedKeysByFile: [],
-            unmatched: 0,
-            updated: 0,
-          },
-          startTime: 1614276653793,
-          success: false,
-          testResults: [
-            {
-              leaks: false,
-              numFailingTests: 0,
-              numPassingTests: 6,
-              numPendingTests: 0,
-              numTodoTests: 0,
-              openHandles: [],
-              perfStats: { end: 1614276654961, runtime: 428, slow: false, start: 1614276654533 },
-              skipped: false,
-              snapshot: {
-                added: 0,
-                fileDeleted: false,
-                matched: 0,
-                unchecked: 0,
-                unmatched: 0,
-                updated: 0,
-                uncheckedKeys: [],
-              },
-              testFilePath: "/Users/alihabibzadeh/branded-jest-html-reporter/src/index.test.ts",
-              testResults: [
-                {
-                  ancestorTitles: [
-                    "The describe title\nSome extended description about this test so make sure you underatand it properly",
-                  ],
-                  duration: 2,
-                  failureDetails: [],
-                  failureMessages: [],
-                  fullName:
-                    "The describe title\nSome extended description about this test so make sure you underatand it properly does something",
-                  location: null,
-                  numPassingAsserts: 0,
-                  status: "passed",
-                  title: "does something",
-                },
-                {
-                  ancestorTitles: [
-                    "The describe title\nSome extended description about this test so make sure you underatand it properly",
-                  ],
-                  duration: 0,
-                  failureDetails: [],
-                  failureMessages: [],
-                  fullName:
-                    "The describe title\nSome extended description about this test so make sure you underatand it properly does something else",
-                  location: null,
-                  numPassingAsserts: 0,
-                  status: "passed",
-                  title: "does something else",
-                },
-                {
-                  ancestorTitles: [
-                    "The describe title\nSome extended description about this test so make sure you underatand it properly",
-                  ],
-                  duration: 0,
-                  failureDetails: [],
-                  failureMessages: [],
-                  fullName:
-                    "The describe title\nSome extended description about this test so make sure you underatand it properly doesn't do something",
-                  location: null,
-                  numPassingAsserts: 0,
-                  status: "passed",
-                  title: "doesn't do something",
-                },
-                {
-                  ancestorTitles: ["foo 2"],
-                  duration: 0,
-                  failureDetails: [],
-                  failureMessages: [],
-                  fullName: "foo 2 does something 2",
-                  location: null,
-                  numPassingAsserts: 0,
-                  status: "passed",
-                  title: "does something 2",
-                },
-                {
-                  ancestorTitles: ["foo 2"],
-                  duration: 1,
-                  failureDetails: [],
-                  failureMessages: [],
-                  fullName: "foo 2 does something else 2",
-                  location: null,
-                  numPassingAsserts: 0,
-                  status: "passed",
-                  title: "does something else 2",
-                },
-                {
-                  ancestorTitles: ["foo 2"],
-                  duration: 0,
-                  failureDetails: [],
-                  failureMessages: [],
-                  fullName: "foo 2 doesn't do something 2",
-                  location: null,
-                  numPassingAsserts: 0,
-                  status: "passed",
-                  title: "doesn't do something 2",
-                },
-              ],
-              failureMessage: null,
-            },
-          ],
-          wasInterrupted: false,
-        },
-      };
+      const templateData = {"projectName":"@deepcrawl/branded-jest-html-reporter","projectDescription":"A DeepCrawl branded Jest Html Reporter","repositoryUrl":"https://github.com/deepcrawl/branded-jest-html-reporter","results":{"numFailedTestSuites":0,"numFailedTests":0,"numPassedTestSuites":1,"numPassedTests":6,"numPendingTestSuites":0,"numPendingTests":0,"numRuntimeErrorTestSuites":0,"numTodoTests":0,"numTotalTestSuites":1,"numTotalTests":6,"openHandles":[],"snapshot":{"added":0,"didUpdate":false,"failure":false,"filesAdded":0,"filesRemoved":0,"filesRemovedList":[],"filesUnmatched":0,"filesUpdated":0,"matched":0,"total":0,"unchecked":0,"uncheckedKeysByFile":[],"unmatched":0,"updated":0},"startTime":1614281390316,"success":false,"testResults":[{"leaks":false,"numFailingTests":0,"numPassingTests":6,"numPendingTests":0,"numTodoTests":0,"openHandles":[],"perfStats":{"end":1614281391042,"runtime":291,"slow":false,"start":1614281390751},"skipped":false,"snapshot":{"added":0,"fileDeleted":false,"matched":0,"unchecked":0,"unmatched":0,"updated":0,"uncheckedKeys":[]},"testFilePath":"/Users/alihabibzadeh/branded-jest-html-reporter/src/index.test.ts","testResults":[{"ancestorTitles":["The describe title\nSome extended description about this test so make sure you underatand it properly"],"duration":1,"failureDetails":[],"failureMessages":[],"fullName":"The describe title\nSome extended description about this test so make sure you underatand it properly does something","location":null,"numPassingAsserts":0,"status":"passed","title":"does something"},{"ancestorTitles":["The describe title\nSome extended description about this test so make sure you underatand it properly"],"duration":0,"failureDetails":[],"failureMessages":[],"fullName":"The describe title\nSome extended description about this test so make sure you underatand it properly does something else","location":null,"numPassingAsserts":0,"status":"passed","title":"does something else"},{"ancestorTitles":["The describe title\nSome extended description about this test so make sure you underatand it properly"],"duration":1,"failureDetails":[],"failureMessages":[],"fullName":"The describe title\nSome extended description about this test so make sure you underatand it properly doesn't do something","location":null,"numPassingAsserts":0,"status":"passed","title":"doesn't do something"},{"ancestorTitles":["foo 2"],"duration":0,"failureDetails":[],"failureMessages":[],"fullName":"foo 2 does something 2","location":null,"numPassingAsserts":0,"status":"passed","title":"does something 2"},{"ancestorTitles":["foo 2"],"duration":0,"failureDetails":[],"failureMessages":[],"fullName":"foo 2 does something else 2","location":null,"numPassingAsserts":0,"status":"passed","title":"does something else 2"},{"ancestorTitles":["foo 2"],"duration":0,"failureDetails":[],"failureMessages":[],"fullName":"foo 2 doesn't do something 2","location":null,"numPassingAsserts":0,"status":"passed","title":"doesn't do something 2"}],"failureMessage":null}],"wasInterrupted":false}};
     </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
@@ -395,7 +261,11 @@
         }
       }
 
-      ko.applyBindings(new ViewModel(templateData));
+      ko.applyBindings(new ViewModel(templateData), document.getElementById("htmlTag"));
+
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
     </script>
   </body>
 </html>
