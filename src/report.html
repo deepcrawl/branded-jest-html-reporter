@@ -27,11 +27,17 @@
     />
 
     <style>
+      .container {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 20px;
+      }
       .jumbotron {
         background-color: #24333e;
         color: white;
         border-radius: 0%;
-        padding-bottom: 0;
+        padding: 20px 0 0 0;
+        margin-bottom: 10px;
       }
 
       .jumbotron h1 {
@@ -96,49 +102,31 @@
         color: #4796bb;
       }
       .truncate {
-        width: 100%;
+        width: 60%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+      .nav {
+        background-color: #24333e;
+        position: fixed;
+        height: 100%;
+        left: 0;
+        font-size: 16px;
+        padding: 15px;
+      }
+      ul ul li a,
+      ul ul li a:hover {
+        color: rgba(229, 242, 255, 0.69);
       }
     </style>
   </head>
 
   <body>
-    <div class="jumbotron">
-      <span class="brace">{}</span>
-      <div class="container">
-        <h1>
-          <a data-bind="attr: { href: repositoryUrl }"><i class="fa fa-github-alt" aria-hidden="true"></i> </a>
-          <span data-bind="text: projectName"></span>
-        </h1>
-        <p class="lead" data-bind="text: projectDescription"></p>
-
-        <table class="table table-dark">
-          <tr>
-            <td>Total Tests</td>
-            <td>
-              <i class="fa fa-exclamation-circle" data-bind="css: { 'danger-text': results.numFailedTests > 0 }"></i>
-              Failed Tests
-            </td>
-            <td>
-              <i class="fa fa-check-circle-o success-text"></i>
-              Passed Tests
-            </td>
-          </tr>
-          <tr>
-            <td data-bind="text: results.numTotalTests"></td>
-            <td data-bind="text: results.numFailedTests, css: { 'danger-text': results.numFailedTests > 0 }"></td>
-            <td data-bind="text: results.numPassedTests" class="success-text"></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row justify-content-start">
+    <div class="container-fluid">
+      <div class="row">
         <div class="col-3">
-          <ul data-bind="foreach: files">
+          <ul data-bind="foreach: files" class="nav">
             <li class="truncate">
               <a data-bind="text: testFilePath, attr: { href: `#file-${$index()}` }"></a>
 
@@ -150,35 +138,74 @@
             </li>
           </ul>
         </div>
-        <div class="col-9">
-          <div data-bind="foreach: files">
-            <h4 class="mb-1" data-bind="text: testFilePath, attr: { id: `file-${$index()}` }"></h4>
+        <div class="col-9" style="padding: 0; background: #f4f4f4">
+          <div class="jumbotron">
+            <span class="brace">{}</span>
+            <div class="container">
+              <h1>
+                <a data-bind="attr: { href: repositoryUrl }"><i class="fa fa-github-alt" aria-hidden="true"></i> </a>
+                <span data-bind="text: projectName"></span>
+              </h1>
+              <p class="lead" data-bind="text: projectDescription"></p>
 
-            <div data-bind="foreach: suites">
-              <div>
-                <div>
-                  <p
-                    class="mb-1"
-                    style="white-space: pre-wrap"
-                    data-bind="text: name, attr: { id: `suite-${$index()}-${$parentContext.$index()}`}"
-                  ></p>
-                  <div class="list-group" data-bind="foreach: tests" style="margin-bottom: 30px">
-                    <div
-                      class="list-group-item"
-                      data-bind="attr: { id: `test-${$index()}-${$parentContext.$index()}-${$parentContext.$parentContext.$index()}` }"
-                    >
-                      <div class="d-flex w-100 justify-content-between">
-                        <p class="mb-1">
-                          <i class="fa fa-flask" aria-hidden="true"></i>
-                          <span data-bind="text: title"></span>
-                        </p>
-                        <small data-bind="text: status, css: { 'danger-text': status === 'failed' }"></small>
+              <table class="table table-dark">
+                <tr>
+                  <td>Total Tests</td>
+                  <td>
+                    <i
+                      class="fa fa-exclamation-circle"
+                      data-bind="css: { 'danger-text': results.numFailedTests > 0 }"
+                    ></i>
+                    Failed Tests
+                  </td>
+                  <td>
+                    <i class="fa fa-check-circle-o success-text"></i>
+                    Passed Tests
+                  </td>
+                </tr>
+                <tr>
+                  <td data-bind="text: results.numTotalTests"></td>
+                  <td data-bind="text: results.numFailedTests, css: { 'danger-text': results.numFailedTests > 0 }"></td>
+                  <td data-bind="text: results.numPassedTests" class="success-text"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row justify-content-start">
+              <div class="col-12">
+                <div data-bind="foreach: files">
+                  <h4 class="mb-1" data-bind="text: testFilePath, attr: { id: `file-${$index()}` }"></h4>
+
+                  <div data-bind="foreach: suites">
+                    <div>
+                      <div>
+                        <p
+                          class="mb-1"
+                          style="white-space: pre-wrap"
+                          data-bind="text: name, attr: { id: `suite-${$index()}-${$parentContext.$index()}`}"
+                        ></p>
+                        <div class="list-group" data-bind="foreach: tests" style="margin-bottom: 30px">
+                          <div
+                            class="list-group-item"
+                            data-bind="attr: { id: `test-${$index()}-${$parentContext.$index()}-${$parentContext.$parentContext.$index()}` }"
+                          >
+                            <div class="d-flex w-100 justify-content-between">
+                              <p class="mb-1">
+                                <i class="fa fa-flask" aria-hidden="true"></i>
+                                <span data-bind="text: title"></span>
+                              </p>
+                              <small data-bind="text: status, css: { 'danger-text': status === 'failed' }"></small>
+                            </div>
+                            <code data-bind="foreach: failureDetails" class="danger-text">
+                              Expected <span data-bind="text:error.matcherResult.expected"></span> but value was
+                              <span data-bind="text:error.matcherResult.actual"></span>
+                              (<span data-bind="text:error.matcherResult.name"></span>)
+                            </code>
+                          </div>
+                        </div>
                       </div>
-                      <code data-bind="foreach: failureDetails" class="danger-text">
-                        Expected <span data-bind="text:error.matcherResult.expected"></span> but value was
-                        <span data-bind="text:error.matcherResult.actual"></span>
-                        (<span data-bind="text:error.matcherResult.name"></span>)
-                      </code>
                     </div>
                   </div>
                 </div>
@@ -188,6 +215,7 @@
         </div>
       </div>
     </div>
+
     <script>
       const templateData = <%-JSON.stringify(templateData)%>;
     </script>
