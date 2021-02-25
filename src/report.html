@@ -117,6 +117,9 @@
         padding: 15px;
         overflow-y: scroll;
       }
+      ul ul li {
+        max-width: 200px;
+      }
       ul ul li a,
       ul ul li a:hover {
         color: rgba(229, 242, 255, 0.69);
@@ -133,12 +136,8 @@
               <a data-bind="text: testFilePath, attr: { href: `#file-${$index()}` }"></a>
 
               <ul data-bind="foreach: suites">
-                <li class="truncate">
-                  <a
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    data-bind="text: name, attr: { href: `#suite-${$index()}-${$parentContext.$index()}`, title: name }"
-                  ></a>
+                <li class="truncate" data-toggle="tooltip" data-placement="top" data-bind="attr: { title: name }">
+                  <a data-bind="text: name, attr: { href: `#suite-${$index()}-${$parentContext.$index()}` }"></a>
                 </li>
               </ul>
             </li>

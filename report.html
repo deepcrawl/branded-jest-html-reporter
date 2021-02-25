@@ -117,6 +117,9 @@
         padding: 15px;
         overflow-y: scroll;
       }
+      ul ul li {
+        max-width: 200px;
+      }
       ul ul li a,
       ul ul li a:hover {
         color: rgba(229, 242, 255, 0.69);
@@ -133,12 +136,8 @@
               <a data-bind="text: testFilePath, attr: { href: `#file-${$index()}` }"></a>
 
               <ul data-bind="foreach: suites">
-                <li class="truncate">
-                  <a
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    data-bind="text: name, attr: { href: `#suite-${$index()}-${$parentContext.$index()}`, title: name }"
-                  ></a>
+                <li class="truncate" data-toggle="tooltip" data-placement="top" data-bind="attr: { title: name }">
+                  <a data-bind="text: name, attr: { href: `#suite-${$index()}-${$parentContext.$index()}` }"></a>
                 </li>
               </ul>
             </li>
@@ -223,7 +222,143 @@
     </div>
 
     <script>
-      const templateData = {"projectName":"@deepcrawl/branded-jest-html-reporter","projectDescription":"A DeepCrawl branded Jest Html Reporter","repositoryUrl":"https://github.com/deepcrawl/branded-jest-html-reporter","results":{"numFailedTestSuites":0,"numFailedTests":0,"numPassedTestSuites":1,"numPassedTests":6,"numPendingTestSuites":0,"numPendingTests":0,"numRuntimeErrorTestSuites":0,"numTodoTests":0,"numTotalTestSuites":1,"numTotalTests":6,"openHandles":[],"snapshot":{"added":0,"didUpdate":false,"failure":false,"filesAdded":0,"filesRemoved":0,"filesRemovedList":[],"filesUnmatched":0,"filesUpdated":0,"matched":0,"total":0,"unchecked":0,"uncheckedKeysByFile":[],"unmatched":0,"updated":0},"startTime":1614281390316,"success":false,"testResults":[{"leaks":false,"numFailingTests":0,"numPassingTests":6,"numPendingTests":0,"numTodoTests":0,"openHandles":[],"perfStats":{"end":1614281391042,"runtime":291,"slow":false,"start":1614281390751},"skipped":false,"snapshot":{"added":0,"fileDeleted":false,"matched":0,"unchecked":0,"unmatched":0,"updated":0,"uncheckedKeys":[]},"testFilePath":"/Users/alihabibzadeh/branded-jest-html-reporter/src/index.test.ts","testResults":[{"ancestorTitles":["The describe title\nSome extended description about this test so make sure you underatand it properly"],"duration":1,"failureDetails":[],"failureMessages":[],"fullName":"The describe title\nSome extended description about this test so make sure you underatand it properly does something","location":null,"numPassingAsserts":0,"status":"passed","title":"does something"},{"ancestorTitles":["The describe title\nSome extended description about this test so make sure you underatand it properly"],"duration":0,"failureDetails":[],"failureMessages":[],"fullName":"The describe title\nSome extended description about this test so make sure you underatand it properly does something else","location":null,"numPassingAsserts":0,"status":"passed","title":"does something else"},{"ancestorTitles":["The describe title\nSome extended description about this test so make sure you underatand it properly"],"duration":1,"failureDetails":[],"failureMessages":[],"fullName":"The describe title\nSome extended description about this test so make sure you underatand it properly doesn't do something","location":null,"numPassingAsserts":0,"status":"passed","title":"doesn't do something"},{"ancestorTitles":["foo 2"],"duration":0,"failureDetails":[],"failureMessages":[],"fullName":"foo 2 does something 2","location":null,"numPassingAsserts":0,"status":"passed","title":"does something 2"},{"ancestorTitles":["foo 2"],"duration":0,"failureDetails":[],"failureMessages":[],"fullName":"foo 2 does something else 2","location":null,"numPassingAsserts":0,"status":"passed","title":"does something else 2"},{"ancestorTitles":["foo 2"],"duration":0,"failureDetails":[],"failureMessages":[],"fullName":"foo 2 doesn't do something 2","location":null,"numPassingAsserts":0,"status":"passed","title":"doesn't do something 2"}],"failureMessage":null}],"wasInterrupted":false}};
+      const templateData = {
+        projectName: "@deepcrawl/branded-jest-html-reporter",
+        projectDescription: "A DeepCrawl branded Jest Html Reporter",
+        repositoryUrl: "https://github.com/deepcrawl/branded-jest-html-reporter",
+        results: {
+          numFailedTestSuites: 0,
+          numFailedTests: 0,
+          numPassedTestSuites: 1,
+          numPassedTests: 6,
+          numPendingTestSuites: 0,
+          numPendingTests: 0,
+          numRuntimeErrorTestSuites: 0,
+          numTodoTests: 0,
+          numTotalTestSuites: 1,
+          numTotalTests: 6,
+          openHandles: [],
+          snapshot: {
+            added: 0,
+            didUpdate: false,
+            failure: false,
+            filesAdded: 0,
+            filesRemoved: 0,
+            filesRemovedList: [],
+            filesUnmatched: 0,
+            filesUpdated: 0,
+            matched: 0,
+            total: 0,
+            unchecked: 0,
+            uncheckedKeysByFile: [],
+            unmatched: 0,
+            updated: 0,
+          },
+          startTime: 1614281390316,
+          success: false,
+          testResults: [
+            {
+              leaks: false,
+              numFailingTests: 0,
+              numPassingTests: 6,
+              numPendingTests: 0,
+              numTodoTests: 0,
+              openHandles: [],
+              perfStats: { end: 1614281391042, runtime: 291, slow: false, start: 1614281390751 },
+              skipped: false,
+              snapshot: {
+                added: 0,
+                fileDeleted: false,
+                matched: 0,
+                unchecked: 0,
+                unmatched: 0,
+                updated: 0,
+                uncheckedKeys: [],
+              },
+              testFilePath: "/Users/alihabibzadeh/branded-jest-html-reporter/src/index.test.ts",
+              testResults: [
+                {
+                  ancestorTitles: [
+                    "The describe title\nSome extended description about this test so make sure you underatand it properly",
+                  ],
+                  duration: 1,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName:
+                    "The describe title\nSome extended description about this test so make sure you underatand it properly does something",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title: "does something",
+                },
+                {
+                  ancestorTitles: [
+                    "The describe title\nSome extended description about this test so make sure you underatand it properly",
+                  ],
+                  duration: 0,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName:
+                    "The describe title\nSome extended description about this test so make sure you underatand it properly does something else",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title: "does something else",
+                },
+                {
+                  ancestorTitles: [
+                    "The describe title\nSome extended description about this test so make sure you underatand it properly",
+                  ],
+                  duration: 1,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName:
+                    "The describe title\nSome extended description about this test so make sure you underatand it properly doesn't do something",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title: "doesn't do something",
+                },
+                {
+                  ancestorTitles: ["foo 2"],
+                  duration: 0,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName: "foo 2 does something 2",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title: "does something 2",
+                },
+                {
+                  ancestorTitles: ["foo 2"],
+                  duration: 0,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName: "foo 2 does something else 2",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title: "does something else 2",
+                },
+                {
+                  ancestorTitles: ["foo 2"],
+                  duration: 0,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName: "foo 2 doesn't do something 2",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title: "doesn't do something 2",
+                },
+              ],
+              failureMessage: null,
+            },
+          ],
+          wasInterrupted: false,
+        },
+      };
     </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
