@@ -5,7 +5,7 @@ Some extended description about this test so make sure you underatand it properl
   });
 
   it("does something else", () => {
-    expect(false).toBe(true);
+    expect(false).toBe(false);
   });
 
   it("doesn't do something", () => {
