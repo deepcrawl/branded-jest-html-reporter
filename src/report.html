@@ -101,24 +101,21 @@
       a:hover {
         color: #4796bb;
       }
-      .truncate {
-        width: 60%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
       .nav {
         background-color: #24333e;
         position: fixed;
         height: 100%;
-        width: 60%;
         left: 0;
         font-size: 16px;
         padding: 15px;
         overflow-y: scroll;
+        width: 25%;
       }
-      ul ul li {
-        max-width: 200px;
+      .nav li {
+        display: block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
       ul ul li a,
       ul ul li a:hover {
