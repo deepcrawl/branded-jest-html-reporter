@@ -121,6 +121,24 @@
       ul ul li a:hover {
         color: rgba(229, 242, 255, 0.69);
       }
+      .test-info {
+        border: 1px solid #e9ecef;
+
+        margin: 20px 0;
+        padding: 15px;
+        border-radius: 0.25rem;
+        background: #ffffff61;
+      }
+      .test-info.success {
+        border-left: solid 3px #7eac4a;
+      }
+      .test-info.error {
+        border-left: solid 3px #ca776c;
+      }
+
+      .test-info .header {
+        font-weight: bold;
+      }
     </style>
   </head>
 
@@ -183,11 +201,14 @@
                   <div data-bind="foreach: suites">
                     <div>
                       <div>
-                        <p
-                          class="mb-1"
-                          style="white-space: pre-wrap"
-                          data-bind="text: name, attr: { id: `suite-${$index()}-${$parentContext.$index()}`}"
-                        ></p>
+                        <div class="test-info" data-bind="css: { error: hasErrors, success: !hasErrors }">
+                          <p
+                            class="mb-1 header"
+                            style="white-space: pre-wrap"
+                            data-bind="text: name, attr: { id: `suite-${$index()}-${$parentContext.$index()}`}"
+                          ></p>
+                          <p class="mb-1" style="white-space: pre-wrap" data-bind="text: description"></p>
+                        </div>
                         <div class="list-group" data-bind="foreach: tests" style="margin-bottom: 30px">
                           <div
                             class="list-group-item"
@@ -201,9 +222,7 @@
                               <small data-bind="text: status, css: { 'danger-text': status === 'failed' }"></small>
                             </div>
                             <code data-bind="foreach: failureDetails" class="danger-text">
-                              Expected <span data-bind="text:error.matcherResult.expected"></span> but value was
-                              <span data-bind="text:error.matcherResult.actual"></span>
-                              (<span data-bind="text:error.matcherResult.name"></span>)
+                              <span data-bind="text:message"></span>
                             </code>
                           </div>
                         </div>
@@ -249,7 +268,9 @@
               ...s,
               testFilePath: paths[paths.length - 1],
               suites: Object.entries(R.groupBy(i => i.ancestorTitles[0], s.testResults)).map(([name, tests]) => ({
-                name,
+                name: name.split("\n")[0],
+                description: name.split("\n").slice(1).join("\n"),
+                hasErrors: tests.map(t => t.failureDetails).flat().length > 0,
                 tests,
               })),
             };

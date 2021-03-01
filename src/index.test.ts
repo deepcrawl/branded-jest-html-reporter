@@ -13,7 +13,8 @@ Some extended description about this test so make sure you underatand it properl
   });
 });
 
-describe("foo 2", () => {
+describe(`foo 2
+some more text about this test`, () => {
   it("does something 2", () => {
     expect(true).toBe(true);
   });
