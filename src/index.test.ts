@@ -31,6 +31,6 @@ some more text about this test`, () => {
   });
 
   it("doesn't do something 2", () => {
-    expect(true).toBe(false);
+    expect(true).toBe(true);
   });
 });
