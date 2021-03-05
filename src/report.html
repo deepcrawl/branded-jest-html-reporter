@@ -226,6 +226,11 @@
                               </p>
                               <small data-bind="text: status, css: { 'danger-text': status === 'failed' }"></small>
                             </div>
+                            <span class="badge badge-info">Test body:</span>
+                            <code
+                              data-bind="html: $parentContext.$parent.describe[$parentContext.$index()].testTexts[$index()]"
+                              class="pre-line"
+                            ></code>
                             <code data-bind="foreach: failureDetails" class="danger-text">
                               <span data-bind="decode: stack" class="pre-line"></span>
                             </code>
