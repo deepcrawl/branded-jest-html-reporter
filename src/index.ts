@@ -5,6 +5,7 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { Reporter, Context, Config } from "@jest/reporters";
 import { AggregatedResult } from "@jest/test-result";
 import { renderFile } from "ejs";
+import { Project, SyntaxKind } from "ts-morph";
 
 interface IBrandedHtmlReporterOptions {
   outputDir?: string;
@@ -26,9 +27,28 @@ export default class BrandedHtmlReporter implements Pick<Reporter, "onRunComplet
   constructor(private _: Config.GlobalConfig, private options: IBrandedHtmlReporterOptions) {}
 
   public async onRunComplete(_: Set<Context>, results: AggregatedResult): Promise<void> {
-    const template = await this.getRenderedTemplate({ ...this.options, results });
+    const template = await this.getRenderedTemplate({
+      ...this.options,
+      results: {
+        ...results,
+        testResults: results.testResults.map(t => ({ ...t, describe: this.getTestSource(t.testFilePath) })),
+      },
+    });
     await this.writeReport(template);
     await this.uploadToS3();
+  }
+
+  private getTestSource(path: string): unknown {
+    const project = new Project();
+    const source = project.addSourceFileAtPath(path);
+    return source
+      .getDescendantsOfKind(SyntaxKind.CallExpression)
+      .map(d => ({
+        type: d.getExpression().getText(),
+        text: d.getText(),
+      }))
+      .filter(d => d.type === "describe")
+      .map(c => ({ text: c.text.substring(c.text.indexOf("() => {") + 7, c.text.indexOf("it(")) }));
   }
 
   private async uploadToS3(): Promise<void> {

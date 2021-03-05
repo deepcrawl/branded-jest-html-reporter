@@ -32,6 +32,7 @@
         margin-right: 0;
         padding-left: 20px;
       }
+
       .jumbotron {
         background-color: #24333e;
         color: white;
@@ -139,6 +140,9 @@
       .test-info .header {
         font-weight: bold;
       }
+      .pre-line {
+        white-space: pre-line;
+      }
     </style>
   </head>
 
@@ -148,7 +152,7 @@
         <div class="col-3">
           <ul data-bind="foreach: files" class="nav">
             <li class="truncate">
-              <a data-bind="text: testFilePath, attr: { href: `#file-${$index()}` }"></a>
+              <a data-bind="text: testFileName, attr: { href: `#file-${$index()}` }"></a>
 
               <ul data-bind="foreach: suites">
                 <li class="truncate" data-toggle="tooltip" data-placement="top" data-bind="attr: { title: name }">
@@ -196,7 +200,7 @@
             <div class="row justify-content-start">
               <div class="col-12">
                 <div data-bind="foreach: files">
-                  <h4 class="mb-1" data-bind="text: testFilePath, attr: { id: `file-${$index()}` }"></h4>
+                  <h4 class="mb-1" data-bind="text: testFileName, attr: { id: `file-${$index()}` }"></h4>
 
                   <div data-bind="foreach: suites">
                     <div>
@@ -208,6 +212,7 @@
                             data-bind="text: name, attr: { id: `suite-${$index()}-${$parentContext.$index()}`}"
                           ></p>
                           <p class="mb-1" style="white-space: pre-wrap" data-bind="text: description"></p>
+                          <code data-bind="html: $parent.describe[$index()].text" class="pre-line"></code>
                         </div>
                         <div class="list-group" data-bind="foreach: tests" style="margin-bottom: 30px">
                           <div
@@ -217,12 +222,12 @@
                             <div class="d-flex w-100 justify-content-between">
                               <p class="mb-1">
                                 <i class="fa fa-flask" aria-hidden="true"></i>
-                                <span data-bind="text: title"></span>
+                                <span data-bind="text: title" class="pre-line"></span>
                               </p>
                               <small data-bind="text: status, css: { 'danger-text': status === 'failed' }"></small>
                             </div>
                             <code data-bind="foreach: failureDetails" class="danger-text">
-                              <span data-bind="text:message"></span>
+                              <span data-bind="decode: stack" class="pre-line"></span>
                             </code>
                           </div>
                         </div>
@@ -251,6 +256,14 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      ko.bindingHandlers.decode = {
+        init: function (element, valueAccessor) {
+          const value = ko.unwrap(valueAccessor());
+          $(element).html(value.normalize().replace(/\[(.*?)\m/g, ""));
+        },
+      };
+    </script>
+    <script>
       class ViewModel {
         constructor(data) {
           this.projectName = data.projectName;
@@ -266,7 +279,8 @@
             const paths = s.testFilePath.split("/");
             return {
               ...s,
-              testFilePath: paths[paths.length - 1],
+              testFilePath: s.testFilePath,
+              testFileName: paths[paths.length - 1],
               suites: Object.entries(R.groupBy(i => i.ancestorTitles[0], s.testResults)).map(([name, tests]) => ({
                 name: name.split("\n")[0],
                 description: name.split("\n").slice(1).join("\n"),
