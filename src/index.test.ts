@@ -33,4 +33,8 @@ some more text about this test`, () => {
   it("doesn't do something 2", () => {
     expect(true).toBe(true);
   });
+
+  it("doesn't do something 3", () => {
+    expect(true).toBe(true);
+  });
 });

@@ -27,18 +27,16 @@ export default class BrandedHtmlReporter implements Pick<Reporter, "onRunComplet
   constructor(private _: Config.GlobalConfig, private options: IBrandedHtmlReporterOptions) {}
 
   public async onRunComplete(_: Set<Context>, results: AggregatedResult): Promise<void> {
+    const testResults = results.testResults.map(t => ({ ...t, describe: this.getDescribeSource(t.testFilePath) }));
     const template = await this.getRenderedTemplate({
       ...this.options,
-      results: {
-        ...results,
-        testResults: results.testResults.map(t => ({ ...t, describe: this.getTestSource(t.testFilePath) })),
-      },
+      results: { ...results, testResults },
     });
     await this.writeReport(template);
     await this.uploadToS3();
   }
 
-  private getTestSource(path: string): unknown {
+  private getDescribeSource(path: string): unknown {
     const project = new Project();
     const source = project.addSourceFileAtPath(path);
     return source
@@ -48,7 +46,14 @@ export default class BrandedHtmlReporter implements Pick<Reporter, "onRunComplet
         text: d.getText(),
       }))
       .filter(d => d.type === "describe")
-      .map(c => ({ text: c.text.substring(c.text.indexOf("() => {") + 7, c.text.indexOf("it(")) }));
+      .map(c => ({
+        text: c.text.substring(c.text.indexOf("() => {") + 7, c.text.indexOf("it(")),
+        testTexts: c.text
+          .substring(c.text.indexOf("it("), c.text.length)
+          .split("it(")
+          .filter(Boolean)
+          .map(t => t.substring(t.indexOf("() => {") + 7, t.indexOf("});"))),
+      }));
   }
 
   private async uploadToS3(): Promise<void> {

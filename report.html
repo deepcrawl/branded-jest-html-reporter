@@ -226,6 +226,11 @@
                               </p>
                               <small data-bind="text: status, css: { 'danger-text': status === 'failed' }"></small>
                             </div>
+                            <span class="badge badge-info">Test body:</span>
+                            <code
+                              data-bind="html: $parentContext.$parent.describe[$parentContext.$index()].testTexts[$index()]"
+                              class="pre-line"
+                            ></code>
                             <code data-bind="foreach: failureDetails" class="danger-text">
                               <span data-bind="decode: stack" class="pre-line"></span>
                             </code>
@@ -243,7 +248,174 @@
     </div>
 
     <script>
-      const templateData = {"projectName":"@deepcrawl/branded-jest-html-reporter","projectDescription":"A DeepCrawl branded Jest Html Reporter","repositoryUrl":"https://github.com/deepcrawl/branded-jest-html-reporter","results":{"numFailedTestSuites":1,"numFailedTests":1,"numPassedTestSuites":0,"numPassedTests":5,"numPendingTestSuites":0,"numPendingTests":0,"numRuntimeErrorTestSuites":0,"numTodoTests":0,"numTotalTestSuites":1,"numTotalTests":6,"openHandles":[],"snapshot":{"added":0,"didUpdate":false,"failure":false,"filesAdded":0,"filesRemoved":0,"filesRemovedList":[],"filesUnmatched":0,"filesUpdated":0,"matched":0,"total":0,"unchecked":0,"uncheckedKeysByFile":[],"unmatched":0,"updated":0},"startTime":1614955364173,"success":false,"testResults":[{"leaks":false,"numFailingTests":1,"numPassingTests":5,"numPendingTests":0,"numTodoTests":0,"openHandles":[],"perfStats":{"end":1614955365489,"runtime":552,"slow":false,"start":1614955364937},"skipped":false,"snapshot":{"added":0,"fileDeleted":false,"matched":0,"unchecked":0,"unmatched":0,"updated":0,"uncheckedKeys":[]},"testFilePath":"/Users/alihabibzadeh/branded-jest-html-reporter/src/index.test.ts","testResults":[{"ancestorTitles":["The describe title\nSome extended description about this test so make sure you underatand it properly"],"duration":1,"failureDetails":[],"failureMessages":[],"fullName":"The describe title\nSome extended description about this test so make sure you underatand it properly does something","location":null,"numPassingAsserts":0,"status":"passed","title":"does something"},{"ancestorTitles":["The describe title\nSome extended description about this test so make sure you underatand it properly"],"duration":0,"failureDetails":[],"failureMessages":[],"fullName":"The describe title\nSome extended description about this test so make sure you underatand it properly does something else","location":null,"numPassingAsserts":0,"status":"passed","title":"does something else"},{"ancestorTitles":["The describe title\nSome extended description about this test so make sure you underatand it properly"],"duration":1,"failureDetails":[],"failureMessages":[],"fullName":"The describe title\nSome extended description about this test so make sure you underatand it properly doesn't do something\n  But also some description about what is it not doing.\n  This can appear over multiple lines.","location":null,"numPassingAsserts":0,"status":"passed","title":"doesn't do something\n  But also some description about what is it not doing.\n  This can appear over multiple lines."},{"ancestorTitles":["foo 2\nsome more text about this test"],"duration":0,"failureDetails":[],"failureMessages":[],"fullName":"foo 2\nsome more text about this test does something 2","location":null,"numPassingAsserts":0,"status":"passed","title":"does something 2"},{"ancestorTitles":["foo 2\nsome more text about this test"],"duration":0,"failureDetails":[],"failureMessages":[],"fullName":"foo 2\nsome more text about this test does something else 2","location":null,"numPassingAsserts":0,"status":"passed","title":"does something else 2"},{"ancestorTitles":["foo 2\nsome more text about this test"],"duration":2,"failureDetails":[{"actual":"","error":{"matcherResult":{"actual":true,"expected":false,"name":"toBe","pass":false}},"expected":"","matcherName":"","message":"Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m","passed":false,"stack":"Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at Object.<anonymous> (/Users/alihabibzadeh/branded-jest-html-reporter/src/index.test.ts:34:18)\n    at Object.asyncJestTest (/Users/alihabibzadeh/branded-jest-html-reporter/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)\n    at /Users/alihabibzadeh/branded-jest-html-reporter/node_modules/jest-jasmine2/build/queueRunner.js:45:12\n    at new Promise (<anonymous>)\n    at mapper (/Users/alihabibzadeh/branded-jest-html-reporter/node_modules/jest-jasmine2/build/queueRunner.js:28:19)\n    at /Users/alihabibzadeh/branded-jest-html-reporter/node_modules/jest-jasmine2/build/queueRunner.js:75:41\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)"}],"failureMessages":["Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at Object.<anonymous> (/Users/alihabibzadeh/branded-jest-html-reporter/src/index.test.ts:34:18)\n    at Object.asyncJestTest (/Users/alihabibzadeh/branded-jest-html-reporter/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)\n    at /Users/alihabibzadeh/branded-jest-html-reporter/node_modules/jest-jasmine2/build/queueRunner.js:45:12\n    at new Promise (<anonymous>)\n    at mapper (/Users/alihabibzadeh/branded-jest-html-reporter/node_modules/jest-jasmine2/build/queueRunner.js:28:19)\n    at /Users/alihabibzadeh/branded-jest-html-reporter/node_modules/jest-jasmine2/build/queueRunner.js:75:41\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)"],"fullName":"foo 2\nsome more text about this test doesn't do something 2","location":null,"numPassingAsserts":0,"status":"failed","title":"doesn't do something 2"}],"failureMessage":"\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mfoo 2\u001b[39m\u001b[22m\n\u001b[1m\u001b[31msome more text about this test › doesn't do something 2\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\n    Expected: \u001b[32mfalse\u001b[39m\n    Received: \u001b[31mtrue\u001b[39m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 32 |\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 33 |\u001b[39m   it(\u001b[32m\"doesn't do something 2\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[2m\u001b[39m\u001b[90m 34 |\u001b[39m     expect(\u001b[36mtrue\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mfalse\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 35 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 36 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 37 |\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.<anonymous> (\u001b[22m\u001b[2m\u001b[0m\u001b[36msrc/index.test.ts\u001b[39m\u001b[0m\u001b[2m:34:18)\u001b[22m\u001b[2m\u001b[22m\n","describe":[{"text":"\n  const config = {\n    foo: 1,\n    bar: true,\n    baz: null,\n  };\n  "},{"text":"\n  "}]}],"wasInterrupted":false}};
+      const templateData = {
+        projectName: "@deepcrawl/branded-jest-html-reporter",
+        projectDescription: "A DeepCrawl branded Jest Html Reporter",
+        repositoryUrl: "https://github.com/deepcrawl/branded-jest-html-reporter",
+        results: {
+          numFailedTestSuites: 0,
+          numFailedTests: 0,
+          numPassedTestSuites: 1,
+          numPassedTests: 7,
+          numPendingTestSuites: 0,
+          numPendingTests: 0,
+          numRuntimeErrorTestSuites: 0,
+          numTodoTests: 0,
+          numTotalTestSuites: 1,
+          numTotalTests: 7,
+          openHandles: [],
+          snapshot: {
+            added: 0,
+            didUpdate: false,
+            failure: false,
+            filesAdded: 0,
+            filesRemoved: 0,
+            filesRemovedList: [],
+            filesUnmatched: 0,
+            filesUpdated: 0,
+            matched: 0,
+            total: 0,
+            unchecked: 0,
+            uncheckedKeysByFile: [],
+            unmatched: 0,
+            updated: 0,
+          },
+          startTime: 1614964910363,
+          success: false,
+          testResults: [
+            {
+              leaks: false,
+              numFailingTests: 0,
+              numPassingTests: 7,
+              numPendingTests: 0,
+              numTodoTests: 0,
+              openHandles: [],
+              perfStats: { end: 1614964911184, runtime: 299, slow: false, start: 1614964910885 },
+              skipped: false,
+              snapshot: {
+                added: 0,
+                fileDeleted: false,
+                matched: 0,
+                unchecked: 0,
+                unmatched: 0,
+                updated: 0,
+                uncheckedKeys: [],
+              },
+              testFilePath: "/Users/alihabibzadeh/branded-jest-html-reporter/src/index.test.ts",
+              testResults: [
+                {
+                  ancestorTitles: [
+                    "The describe title\nSome extended description about this test so make sure you underatand it properly",
+                  ],
+                  duration: 1,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName:
+                    "The describe title\nSome extended description about this test so make sure you underatand it properly does something",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title: "does something",
+                },
+                {
+                  ancestorTitles: [
+                    "The describe title\nSome extended description about this test so make sure you underatand it properly",
+                  ],
+                  duration: 1,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName:
+                    "The describe title\nSome extended description about this test so make sure you underatand it properly does something else",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title: "does something else",
+                },
+                {
+                  ancestorTitles: [
+                    "The describe title\nSome extended description about this test so make sure you underatand it properly",
+                  ],
+                  duration: 0,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName:
+                    "The describe title\nSome extended description about this test so make sure you underatand it properly doesn't do something\n  But also some description about what is it not doing.\n  This can appear over multiple lines.",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title:
+                    "doesn't do something\n  But also some description about what is it not doing.\n  This can appear over multiple lines.",
+                },
+                {
+                  ancestorTitles: ["foo 2\nsome more text about this test"],
+                  duration: 0,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName: "foo 2\nsome more text about this test does something 2",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title: "does something 2",
+                },
+                {
+                  ancestorTitles: ["foo 2\nsome more text about this test"],
+                  duration: 0,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName: "foo 2\nsome more text about this test does something else 2",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title: "does something else 2",
+                },
+                {
+                  ancestorTitles: ["foo 2\nsome more text about this test"],
+                  duration: 4,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName: "foo 2\nsome more text about this test doesn't do something 2",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title: "doesn't do something 2",
+                },
+                {
+                  ancestorTitles: ["foo 2\nsome more text about this test"],
+                  duration: 0,
+                  failureDetails: [],
+                  failureMessages: [],
+                  fullName: "foo 2\nsome more text about this test doesn't do something 3",
+                  location: null,
+                  numPassingAsserts: 0,
+                  status: "passed",
+                  title: "doesn't do something 3",
+                },
+              ],
+              failureMessage: null,
+              describe: [
+                {
+                  text: "\n  const config = {\n    foo: 1,\n    bar: true,\n    baz: null,\n  };\n  ",
+                  testTexts: [
+                    "\n    expect(config).toBe(config);\n  ",
+                    "\n    expect(false).toBe(false);\n  ",
+                    "\n    expect(true).toBe(true);\n  ",
+                  ],
+                },
+                {
+                  text: "\n  ",
+                  testTexts: [
+                    "\n    expect(true).toBe(true);\n  ",
+                    "\n    expect(false).toBe(false);\n  ",
+                    "\n    expect(true).toBe(true);\n  ",
+                    "\n    expect(true).toBe(true);\n  ",
+                  ],
+                },
+              ],
+            },
+          ],
+          wasInterrupted: false,
+        },
+      };
     </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
